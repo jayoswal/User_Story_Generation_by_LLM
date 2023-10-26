@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+    <title>Results</title>
+    
+</head>
+<body>
+    <h1 class="text-center">Results</h1>
+    
+    <div class="container mt-5">
+
+        <!--TODO - Write code to make this export pdf button working-->
+        <div class="container-fluid text-right">
+            <button class="btn btn-success">Export Excel</button>
+            <br><br>
+        </div>
+
+        <!--TODO - Add some features with the results example epic, user beedback, number of user stories, regenerate button, hide row after its clicking next-->
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>User_Story_Number</th>
+                        <th>Title</th>
+                        <th>Main_Actor</th>
+                        <th>Action_Verb</th>
+                        <th>System_Entity</th>
+                        <th>Entire_User_Story</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in json_data %}
+                    <tr>
+                        <td>{{ item.User_Story_Number }}</td>
+                        <td>{{ item.Title }}</td>
+                        <td>{{ item.Main_Actor }}</td>
+                        <td>{{ item.Action_Verb }}</td>
+                        <td>{{ item.System_Entity }}</td>
+                        <td>{{ item.Entire_User_Story }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
+<script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    crossorigin="anonymous"
+  ></script>
+</html>
