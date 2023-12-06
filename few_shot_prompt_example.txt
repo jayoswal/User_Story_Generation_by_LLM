@@ -1,0 +1,15 @@
+messages = [
+    {"role": "system", "content": """You will be given a software requirement text. Generate User stories from it and provide the output as array of JSON wiith the keys being User_Story_Number, Title, Main_Actor, Action_Verb, System_Entity, Entire_User_Story.""" },
+
+    {'role': 'user', 'content': "Admin can update the user's address"},
+    {'role': 'assistant', 'content': "[
+                                        {'User_Story_Number':'1', 'Title':'Update User's Address', 'Main_Actor':'Admin', 'Action_Verb':'Update', 'System_Entity':'User Address', 'Entire_User_Story':'As a Admin I want to update user's address so that I can modify and maintain it.'}
+                                        ]"},
+
+    {'role': 'user', 'content': "Student can attempt the test. Teacher can grade the test"},
+    {'role': 'assistant', 'content': """[
+                                        {'User_Story_Number':'1', 'Title':'Attempt Test', 'Main_Actor':'Student', 'Action_Verb':'Attempt', 'System_Entity':'Test', 'Entire_User_Story':'As a Student I want to attempt the test so that I can get grades for it.'},
+                                        
+                                        {'User_Story_Number':'2', 'Title':'Grade Test', 'Main_Actor':'Teacher', 'Action_Verb':'Grade', 'System_Entity':'Test', 'Entire_User_Story':'As a Teacher I want to grade the test so that student can get grades.'}]"""},
+    {'role': 'user', 'content': "Convert the following software requirement text into user stories in JSON format. Text - 'Patients can schedule   appointments with Healthcare ...' "}
+            ]

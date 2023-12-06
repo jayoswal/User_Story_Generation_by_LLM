@@ -7,18 +7,95 @@
     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     rel="stylesheet"
   />
+
+  <!-- Include jQuery from a CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <title>LLM User Stories</title>
     
 </head>
+
+<style>
+  #the-count {
+float: right;
+padding: 0.1rem 0 0 0;
+font-size: 0.875rem;
+font-style: italic;
+}
+</style>
+
+<script>
+   $(document).ready(function() {
+    $('#yest-iddd').keyup(function() {
+      var characterCount = $(this).val().length;
+      var dividedValue = Math.ceil(characterCount / 4),
+          current = $('#current'),
+          maximum = $('#maximum'),
+          theCount = $('#the-count');
+    
+      current.text(dividedValue);
+    });
+  });
+   
+    
+    // /*This isn't entirely necessary, just playin around*/
+    // if (characterCount < 70) {
+    //   current.css('color', '#666');
+    // }
+    // if (characterCount > 70 && characterCount < 90) {
+    //   current.css('color', '#6d5555');
+    // }
+    // if (characterCount > 90 && characterCount < 100) {
+    //   current.css('color', '#793535');
+    // }
+    // if (characterCount > 100 && characterCount < 120) {
+    //   current.css('color', '#841c1c');
+    // }
+    // if (characterCount > 120 && characterCount < 139) {
+    //   current.css('color', '#8f0001');
+    // }
+    
+    // if (characterCount >= 140) {
+    //   maximum.css('color', '#8f0001');
+    //   current.css('color', '#8f0001');
+    //   theCount.css('font-weight','bold');
+    // } else {
+    //   maximum.css('color','#666');
+    //   theCount.css('font-weight','normal');
+    // }
+    
+</script>
+
 <body>
+
+
+  
     <!--TODO - Center it on the page-->
-    <h1 class="text-center" >Enter a Prompt</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <!-- 4096 token limit is for 1 API call/request -->
+    <div class="container">
+      <h1 class="text-center" style="margin: 5% 0% 5% 0%;">Transform Requirement into User Story</h1>
+    <div class="container">
+      <div id="the-count">
+        <span >Tokens: </span>
+        <span id="current">0</span>
+        <span id="maximum">/ 4096</span>
+      </div>
+      <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form }}
+          <button onclick="remove_uploaded_file()">Remove File</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          
+      </form>
+  </div>
+    </div>
+    
 </body>
+<script>
+  function remove_uploaded_file(){
+  document.getElementById("file_upload").value=null;
+}
+</script>
 <script
     src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     crossorigin="anonymous"

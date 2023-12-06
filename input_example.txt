@@ -1,0 +1,1 @@
+The Payroll Administrator maintains employee information. The Payroll Administrator is responsible for adding new employees, deleting employees and changing all employee information such as title, address, and payment classification (hourly, salaried, commissioned), as well as running administrative reports.
