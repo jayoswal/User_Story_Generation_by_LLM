@@ -21,15 +21,15 @@
 
             <!--TODO - Write code to make this export pdf button working-->
             <div class="container-fluid text-right">
-                <button class="btn btn-success">Export csv</button>
-                <button class="btn btn-success">Export Excel</button>
+                <button class="btn btn-success" onclick="downloadCSV()">Export csv</button>
+                <button class="btn btn-success" onclick="downloadExcel()">Export Excel</button>
                 <br><br>
             </div>
     
             <!--TODO - Add some features with the results example epic, user beedback, number of user stories, regenerate button, hide row after its clicking next-->
     
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" id="result-table">
                     <thead class="thead-dark">
                         <tr>
                             <th>User_Story_Number</th>
@@ -74,4 +74,53 @@
     src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
     crossorigin="anonymous"
   ></script>
+  <script>
+    function downloadCSV() {
+    // Get the HTML table
+    var table = document.getElementById("result-table");
+
+    // Initialize CSV string
+    var csv = "";
+
+    // Loop through rows and cells
+    
+    for (var i = 0; i < table.rows.length; i++) {
+        // avoid feedback cell
+        for (var j = 0; j < (table.rows[i].cells.length)-1; j++) {
+            csv += '"' + table.rows[i].cells[j].innerText + '"' + ",";
+        }
+        csv = csv.slice(0, -1); // Remove the trailing comma
+        csv += "\n";
+    }
+
+    // Create a Blob from the CSV string
+    var blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+    // Create a download link
+    var link = document.createElement("a");
+    if (link.download !== undefined) {
+        var url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "result-csv.csv");
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
+
+function downloadExcel() {
+    var table = document.getElementById("result-table");
+
+    var ws = XLSX.utils.table_to_sheet(table);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+
+    XLSX.writeFile(wb, "result-excel.xlsx");
+}
+
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+
 </html>
